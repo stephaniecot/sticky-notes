@@ -6,8 +6,6 @@ import Button from './UI/Button/Button';
 
 const Post = (props) => {
     const navigate = useNavigate()
-
-
     const variableClass = props.post.color;
 
     return (

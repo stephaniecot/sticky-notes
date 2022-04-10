@@ -55,7 +55,7 @@ const EditPost = (props) => {
     return (
        
             <div onClose={props.onClose}>
-                    <h2>Edit</h2>
+                    <h2>Modifier une note</h2>
                     
                     <form onSubmit={handleOnSubmit}>
                     <div className={`${'post-it'} ${color}`}>

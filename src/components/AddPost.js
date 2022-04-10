@@ -6,8 +6,6 @@ import './AddPost.css';
 import Button from './UI/Button/Button';
 import ColorPicker from './UI/Form/ColorPicker';
 
-
-
 const AddPost = (props) => {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
@@ -16,6 +14,8 @@ const AddPost = (props) => {
 
     const [hasError, setHasError] = useState(null)
     const navigate = useNavigate();
+
+    
 
 
    
@@ -49,6 +49,7 @@ const AddPost = (props) => {
   
     return (
         <div onClose={props.onClose}>
+              <span onClick={props.onClose} className="close">&times;</span>
                 <h2>Ajouter une note</h2>
                 
                 <form onSubmit={handleOnSubmit}>
