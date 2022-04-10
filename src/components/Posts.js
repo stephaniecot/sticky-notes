@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import PostService from "../services/PostService";
 import Post from './Post';
+import Button from './UI/Button/Button';
+import { useNavigate } from 'react-router-dom'
 
 const Posts = () => {
-
+    const navigate = useNavigate()
     const [posts, setPosts] = useState([])
     const fetchPosts = () => {
         PostService.getAllPosts().then(res => {
@@ -27,7 +29,8 @@ const Posts = () => {
 
     return (
         <>
-            <h1>List of posts</h1>
+            <h1>Mes Notes</h1>
+            <Button buttonHandler={() => navigate('/addPost')} >+</Button>
             <div className='dashboard'>
                 {posts.length > 0 && sortByCreatedAt(posts).map(p => <Post key={p.id} post={p} handleOnDelete={handleOnDelete} />)}
             </div>

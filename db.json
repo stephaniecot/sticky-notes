@@ -12,7 +12,7 @@
       "title": "YO",
       "createdAt": "2022-03-25T00:40:57.126Z",
       "content": "sdgsdg",
-      "color": "lavender"
+      "color": "banana"
     },
     {
       "id": "lmv8qk",
@@ -30,9 +30,23 @@
     },
     {
       "id": "90twm",
-      "title": "Je suis un post",
+      "title": "Je suis un postsdf",
       "createdAt": "2022-04-10T18:16:35.470Z",
-      "content": "Allo je suis un post",
+      "content": "Allo je suis un postsdfsdfsdf",
+      "color": "lavender"
+    },
+    {
+      "id": "wfuagf",
+      "title": "Je suis un poist",
+      "createdAt": "2022-04-10T19:05:08.494Z",
+      "content": "sdfsdf",
+      "color": "aqua"
+    },
+    {
+      "id": "39sx6",
+      "title": "Allo",
+      "createdAt": "2022-04-10T19:19:43.163Z",
+      "content": "Je suis une note",
       "color": "banana"
     }
   ],
