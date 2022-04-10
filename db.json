@@ -1,0 +1,43 @@
+{
+  "posts": [
+    {
+      "id": "0qi83",
+      "title": "Je suis une note",
+      "createdAt": "2022-03-25T00:39:19.910Z",
+      "content": "TEST",
+      "color": "aqua"
+    },
+    {
+      "id": "1iy9h",
+      "title": "YO",
+      "createdAt": "2022-03-25T00:40:57.126Z",
+      "content": "sdgsdg",
+      "color": "lavender"
+    },
+    {
+      "id": "lmv8qk",
+      "title": "Test",
+      "createdAt": "2022-03-25T14:55:56.627Z",
+      "content": "Je fais un test",
+      "color": "lavender"
+    },
+    {
+      "id": "mpld1",
+      "title": "note",
+      "createdAt": "2022-04-07T18:20:52.850Z",
+      "content": "Je suis une note",
+      "color": "pink"
+    },
+    {
+      "id": "90twm",
+      "title": "Je suis un post",
+      "createdAt": "2022-04-10T18:16:35.470Z",
+      "content": "Allo je suis un post",
+      "color": "banana"
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}
