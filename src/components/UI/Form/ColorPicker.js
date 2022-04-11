@@ -1,4 +1,4 @@
-const ColorPicker = (props, setColor) => {
+const ColorPicker = (props) => {
     return (
         <div className="color-picker" onChange={props.onChange}>
 
