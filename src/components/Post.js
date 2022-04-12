@@ -13,7 +13,8 @@ const Post = (props) => {
             <span className='delete-button' onClick={() => props.handleOnDelete(props.post.id)}>&times;</span>
             <h2>{props.post.title}</h2>
             <p>{props.post.content}</p>
-            <Button buttonHandler={() => navigate(`editPost/${props.post.id}`)}>Edit post</Button>
+            {/* <Button buttonHandler={() => navigate(`editPost/${props.post.id}`)}>Modifier la note</Button> */}
+            <Button buttonHandler={()=> props.editPost(props.post.id)}>Modifier la note</Button>
         </Card>
     )
 }

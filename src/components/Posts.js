@@ -1,8 +1,10 @@
+
 import React, { useEffect, useState } from "react";
 import PostService from "../services/PostService";
 import Post from './Post';
 import Button from './UI/Button/Button';
 import AddPost from "./AddPost";
+import EditPost from "./EditPost";
 import { useNavigate } from 'react-router-dom'
 import Axios from "axios"
 
@@ -10,6 +12,7 @@ const Posts = () => {
     const navigate = useNavigate()
     const [posts, setPosts] = useState([])
     const [showAddPost, setShowAddPost] = useState(false);
+    const [showEditPost, setShowEditPost] = useState(false);
 
 
     const [title, setTitle] = useState('')
@@ -26,11 +29,24 @@ const Posts = () => {
 
     const openAddPost = () => {
         setShowAddPost(true);
+
     }
 
     const closeAddPost = () => {
         setShowAddPost(false);
     }
+
+    
+    const openEditPost = (id) => {
+        setShowEditPost(true);
+        console.log(id)
+    
+    }
+
+    const closeEditPost = () => {
+        setShowEditPost(false);
+    }
+
 
 
     const fetchPosts = () => {
@@ -47,7 +63,7 @@ const Posts = () => {
         }).catch(e => console.err(e.message))
     }
 
-    const handleOnSubmit = (e) => {
+    const formSubmitHandler = (e) => {
         e.preventDefault()
 
         if (title.trim() === '' || content.trim() === '' || !color) {
@@ -75,6 +91,8 @@ const Posts = () => {
     }
 
 
+
+
     const sortByCreatedAt = (thePosts) => thePosts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
 
     useEffect(() => {
@@ -83,22 +101,23 @@ const Posts = () => {
 
     return (
         <>
-            <h1>Mes Notes</h1>
+            <h1>Mon Babillard</h1>
             {/* <Button buttonHandler={() => navigate('/addPost')} >+</Button> */}
             {!showAddPost && <Button buttonHandler={openAddPost}>+</Button>}
             {showAddPost && 
             <AddPost
                 onClose={closeAddPost}
-                handleOnSubmit={handleOnSubmit}
+                formSubmitHandler={formSubmitHandler}
                 titleOnChange={titleTarget}
                 contentOnChange={contentTarget}
                 colorOnChange={colorTarget}
                 color={color}
                 hasError={hasError} />}
             <div className='dashboard'>
+            {showEditPost && <EditPost/>}
 
                 {posts.length > 0 && sortByCreatedAt(posts).map(p =>
-                    <Post key={p.id} post={p} handleOnDelete={handleOnDelete} />
+                    <Post key={p.id} post={p} handleOnDelete={handleOnDelete} editPost={openEditPost} />
                 )}
             </div>
         </>
