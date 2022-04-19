@@ -27,14 +27,29 @@
 }
 .delete-button {
     float: right;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: bold;
     color: #444;
     cursor: pointer;
     transition: 0.5s;
+    
 }
 
 .delete-button:hover {
+    color: rgb(204, 204, 204);
+}
+.edit-button {
+    position:absolute;                 
+    bottom:5%;                         
+    left:50%;
+    font-size: 26px;
+   
+    cursor: pointer;
+    transition: 0.5s;
+
+}
+
+.edit-button:hover {
     color: rgb(204, 204, 204);
 }
 

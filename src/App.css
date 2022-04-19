@@ -15,8 +15,14 @@ body {
   }
   
   h1 {
-    padding-bottom: 1%;
+    padding-bottom: 5px;
+    font-size: 45px;
+    font-weight: bold;
     text-transform: uppercase;
+    background: #feff9c;
+    background: -webkit-linear-gradient(120deg, #ff7eb9 0%, #f8caff 50%, #7afcff 75%, #feff9c 100%);
+    background-clip: text;
+  -webkit-text-fill-color: transparent;
   }
 
   .login {
@@ -26,3 +32,6 @@ body {
     padding: 10px;
   }
   
+  .button-wrapper {
+    height: 70px;
+  }

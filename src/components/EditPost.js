@@ -54,21 +54,20 @@ const EditPost = (props) => {
 
     return (
        
-            <div onClose={props.onClose}>
-                    <h2>Modifier une note</h2>
-                    
-                    <form onSubmit={handleOnSubmit}>
-                    <div className={`${'post-it'} ${color}`}>
+            <div className='post-it-form' onClose={props.onClose}>
+                    <Button buttonHandler={props.onClose}>&times;</Button>
+                    <form onSubmit={props.handleOnSubmit}>
+                    <div className={`${'post-it'} ${props.color}`}>
                         <label>
                             Titre:
-                            <input type="text" name="title" placeholder="Ajouter un titre" value={title} onChange={e => setTitle(e.target.value)} />
+                            <input type="text" name="title" placeholder="Ajouter un titre" value={props.title} onChange={props.titleOnChange} />
                         </label>
                         <label>
                             Contenu:
-                            <textarea name="content" placeholder="Inscrire quelque chose..." value={content} onChange={e => setContent(e.target.value)} />
+                            <textarea name="content" placeholder="Inscrire quelque chose..." value={props.content} onChange={props.contentOnChange} />
                         </label>
                         </div>
-                        <ColorPicker onChange={e => setColor(e.target.id)} />
+                        <ColorPicker onChange={props.colorOnChange} />
                       <Button type='submit'>&#10004;</Button>
                        { hasError && <p>Veuillez compléter tous les champs</p> }
                        

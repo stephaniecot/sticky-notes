@@ -11,6 +11,7 @@ import Axios from "axios"
 const Posts = () => {
     const navigate = useNavigate()
     const [posts, setPosts] = useState([])
+    const [post, setPost] = useState()
     const [showAddPost, setShowAddPost] = useState(false);
     const [showEditPost, setShowEditPost] = useState(false);
 
@@ -34,17 +35,25 @@ const Posts = () => {
 
     const closeAddPost = () => {
         setShowAddPost(false);
+        setHasError(false)
     }
 
-    
+
     const openEditPost = (id) => {
         setShowEditPost(true);
+        PostService.getPost(id).then(res => {
+            setPost(res.data)
+            setTitle(res.data.title)
+            setContent(res.data.content)
+            setColor(res.data.color)
+        }).catch(e => console.warn(e.message))
         console.log(id)
-    
+
     }
 
     const closeEditPost = () => {
         setShowEditPost(false);
+        setHasError(false);
     }
 
 
@@ -59,7 +68,7 @@ const Posts = () => {
         PostService.deletePostById(id).then(() => {
             console.log('Supprimé avec succès')
             fetchPosts();
-            
+
         }).catch(e => console.err(e.message))
     }
 
@@ -90,6 +99,33 @@ const Posts = () => {
 
     }
 
+    const handleOnSubmit = (e) => {
+        e.preventDefault()
+
+        if (title.trim() === '' || content.trim() === '' || !color) {
+            setHasError(true)
+            return;
+        }
+
+        setHasError(false)
+
+        const updatedPost = {
+            id: post.id,
+            title,
+            createdAt: post.createdAt,
+            content,
+            color
+        }
+
+        Axios.patch(`http://localhost:3004/posts/${updatedPost.id}`, updatedPost).then(() => {
+            fetchPosts()
+            setShowEditPost(false)
+        }).catch(e => {
+            console.error(e.message)
+        })
+
+    }
+
 
 
 
@@ -103,21 +139,38 @@ const Posts = () => {
         <>
             <h1>Mon Babillard</h1>
             {/* <Button buttonHandler={() => navigate('/addPost')} >+</Button> */}
-            {!showAddPost && <Button buttonHandler={openAddPost}>+</Button>}
-            {showAddPost && 
-            <AddPost
-                onClose={closeAddPost}
-                formSubmitHandler={formSubmitHandler}
-                titleOnChange={titleTarget}
-                contentOnChange={contentTarget}
-                colorOnChange={colorTarget}
-                color={color}
-                hasError={hasError} />}
+            {!showAddPost && !showEditPost && <Button buttonHandler={openAddPost}>+</Button>}
+            {showAddPost &&
+                <AddPost
+                    onClose={closeAddPost}
+                    formSubmitHandler={formSubmitHandler}
+                    titleOnChange={titleTarget}
+                    contentOnChange={contentTarget}
+                    colorOnChange={colorTarget}
+                    color={color}
+                    hasError={hasError} 
+                    />}
+                    {showEditPost &&
+                    <EditPost
+                        onClose={closeEditPost}
+                        handleOnSubmit={handleOnSubmit}
+                        title={title}
+                        titleOnChange={titleTarget}
+                        content={content}
+                        contentOnChange={contentTarget}
+                        colorOnChange={colorTarget}
+                        color={color}
+                        hasError={hasError} 
+                        
+                    />}
             <div className='dashboard'>
-            {showEditPost && <EditPost/>}
-
                 {posts.length > 0 && sortByCreatedAt(posts).map(p =>
-                    <Post key={p.id} post={p} handleOnDelete={handleOnDelete} editPost={openEditPost} />
+                    <Post
+                        key={p.id}
+                        post={p}
+                        handleOnDelete={handleOnDelete}
+                        editPost={openEditPost}
+                    />
                 )}
             </div>
         </>
