@@ -36,6 +36,7 @@ const Posts = () => {
     const closeAddPost = () => {
         setShowAddPost(false);
         setHasError(false)
+        setColor(null)
     }
 
 
@@ -54,6 +55,7 @@ const Posts = () => {
     const closeEditPost = () => {
         setShowEditPost(false);
         setHasError(false);
+        setColor(null);
     }
 
 
@@ -93,13 +95,14 @@ const Posts = () => {
         Axios.post('http://localhost:3004/posts', post).then(() => {
             fetchPosts()
             setShowAddPost(false)
+            setColor(null)
         }).catch(e => {
             console.error(e.message)
         })
 
     }
 
-    const handleOnSubmit = (e) => {
+    const formEditHandler = (e) => {
         e.preventDefault()
 
         if (title.trim() === '' || content.trim() === '' || !color) {
@@ -120,6 +123,7 @@ const Posts = () => {
         Axios.patch(`http://localhost:3004/posts/${updatedPost.id}`, updatedPost).then(() => {
             fetchPosts()
             setShowEditPost(false)
+            setColor(null)
         }).catch(e => {
             console.error(e.message)
         })
@@ -140,7 +144,7 @@ const Posts = () => {
             <h1>Mon Babillard</h1>
             {/* <Button buttonHandler={() => navigate('/addPost')} >+</Button> */}
             {!showAddPost && !showEditPost && <Button buttonHandler={openAddPost}>+</Button>}
-            {showAddPost &&
+            {showAddPost && !showEditPost &&
                 <AddPost
                     onClose={closeAddPost}
                     formSubmitHandler={formSubmitHandler}
@@ -148,21 +152,21 @@ const Posts = () => {
                     contentOnChange={contentTarget}
                     colorOnChange={colorTarget}
                     color={color}
-                    hasError={hasError} 
-                    />}
-                    {showEditPost &&
-                    <EditPost
-                        onClose={closeEditPost}
-                        handleOnSubmit={handleOnSubmit}
-                        title={title}
-                        titleOnChange={titleTarget}
-                        content={content}
-                        contentOnChange={contentTarget}
-                        colorOnChange={colorTarget}
-                        color={color}
-                        hasError={hasError} 
-                        
-                    />}
+                    hasError={hasError}
+                />}
+            {showEditPost &&
+                <EditPost
+                    onClose={closeEditPost}
+                    formEditHandler={formEditHandler}
+                    title={title}
+                    titleOnChange={titleTarget}
+                    content={content}
+                    contentOnChange={contentTarget}
+                    colorOnChange={colorTarget}
+                    color={color}
+                    hasError={hasError}
+
+                />}
             <div className='dashboard'>
                 {posts.length > 0 && sortByCreatedAt(posts).map(p =>
                     <Post

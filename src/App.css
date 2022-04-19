@@ -25,13 +25,11 @@ body {
   -webkit-text-fill-color: transparent;
   }
 
-  .login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-  
   .button-wrapper {
     height: 70px;
+  }
+
+  .error-msg {
+    color: red;
+    font-size: 20px;
   }

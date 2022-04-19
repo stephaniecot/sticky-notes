@@ -22,7 +22,7 @@ const AddPost = (props) => {
                     </div>
                     <ColorPicker onChange={props.colorOnChange} />
                   <Button type='submit'>&#10004;</Button>
-                   { props.hasError && <p>Veuillez compléter tous les champs</p> }
+                   { props.hasError && <p className="error-msg">Veuillez compléter tous les champs</p> }
                    
                 </form>
                 </div>
