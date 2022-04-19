@@ -5,16 +5,13 @@ import Post from './Post';
 import Button from './UI/Button/Button';
 import AddPost from "./AddPost";
 import EditPost from "./EditPost";
-import { useNavigate } from 'react-router-dom'
 import Axios from "axios"
 
 const Posts = () => {
-    const navigate = useNavigate()
     const [posts, setPosts] = useState([])
     const [post, setPost] = useState()
     const [showAddPost, setShowAddPost] = useState(false);
     const [showEditPost, setShowEditPost] = useState(false);
-
 
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
@@ -30,7 +27,6 @@ const Posts = () => {
 
     const openAddPost = () => {
         setShowAddPost(true);
-
     }
 
     const closeAddPost = () => {
@@ -41,6 +37,7 @@ const Posts = () => {
 
 
     const openEditPost = (id) => {
+        setShowAddPost(false);
         setShowEditPost(true);
         PostService.getPost(id).then(res => {
             setPost(res.data)
@@ -68,7 +65,6 @@ const Posts = () => {
 
     const handleOnDelete = (id) => {
         PostService.deletePostById(id).then(() => {
-            console.log('Supprimé avec succès')
             fetchPosts();
 
         }).catch(e => console.err(e.message))
@@ -131,8 +127,6 @@ const Posts = () => {
     }
 
 
-
-
     const sortByCreatedAt = (thePosts) => thePosts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
 
     useEffect(() => {
@@ -142,7 +136,6 @@ const Posts = () => {
     return (
         <>
             <h1>Mon Babillard</h1>
-            {/* <Button buttonHandler={() => navigate('/addPost')} >+</Button> */}
             {!showAddPost && !showEditPost && <Button buttonHandler={openAddPost}>+</Button>}
             {showAddPost && !showEditPost &&
                 <AddPost

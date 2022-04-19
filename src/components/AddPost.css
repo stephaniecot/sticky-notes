@@ -1,6 +1,6 @@
 .color-picker {
     padding: 5px;
-    margin: 5px;
+    margin: 10px;
     height: 50px;
 }
 .color-picker input[type="radio"] {
@@ -14,20 +14,19 @@
     content: ' ';
     padding: 15px;
     border-radius: 50%;
-    margin: 5px;
+    margin: 10px;
     cursor: pointer;
+    transition: .2s;
 }
 
 .color-picker input[type="radio"]:checked + label {
-    border: 3px solid rgb(148, 146, 146);
-    transform: scale(1.2);
+    transform: scale(1.5);
 }
 
 
 .color-picker label:hover,
 .color-picker input[type="radio"]:focus + label {
-    border: 3px solid rgb(148, 146, 146);;
-    transform: scale(1.2);
+    transform: scale(1.5);
   }
 
 input[name=title] {

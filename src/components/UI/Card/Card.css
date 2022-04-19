@@ -3,11 +3,14 @@
     width: 350px;
     height: 350px;
     display: block;
-    overflow: auto;
     padding: 0 1%;
     position: relative;
     text-align: justify;
    box-shadow: 2px 2px 4px #cfcece;
+}
+.post-it-content  {
+    overflow: auto;
+    height: 225px;
 }
 
 .banana {
